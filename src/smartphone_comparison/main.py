@@ -59,7 +59,7 @@
 
 import sys
 import warnings
-from smartphone_comparison.crew import SmartphoneComparison
+from smartphone_comparison.crew import SmartphoneComparisonCrew
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -80,7 +80,7 @@ def run():
     inputs = {
         'smartphones': "iPhone 16, Samsung, LG"
     }
-    SmartphoneComparison().crew().kickoff(inputs=inputs)
+    SmartphoneComparisonCrew().crew().kickoff(inputs=inputs)
 
 def train():
     #this new code will allow for multiple inputs in one text input
@@ -90,7 +90,7 @@ def train():
     }
 
     try:
-        SmartphoneComparison().crew().train(
+        SmartphoneComparisonCrew().crew().train(
             n_iterations=int(sys.argv[1]), 
             filename=sys.argv[2], 
             inputs=inputs
@@ -101,18 +101,17 @@ def train():
 def replay():
     """Replay the crew execution from a specific task."""
     try:
-        SmartphoneComparison().crew().replay(task_id=sys.argv[1])
+        SmartphoneComparisonCrew().crew().replay(task_id=sys.argv[1])
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
 
 def test():
     """Test the crew execution and returns the results."""
-    smartphones = get_smartphone_inputs()
     inputs = {
-        'smartphones': smartphones
+        'smartphones': "Apple, LG"
     }
     try:
-        SmartphoneComparison().crew().test(
+        SmartphoneComparisonCrew().crew().test(
             n_iterations=int(sys.argv[1]),
             openai_model_name=sys.argv[2],
             inputs=inputs
