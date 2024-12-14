@@ -57,7 +57,7 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 
 @CrewBase
-class SmartphoneComparison():
+class SmartphoneComparisonCrew():
     """Smartphone Comparison crew for analyzing and comparing smartphones"""
 
     agents_config = 'config/agents.yaml'
